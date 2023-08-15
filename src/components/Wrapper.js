@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { clothingData } from '../common/data.ts';
 import Button from '@mui/material/Button';
+import ClothingItem from '../components/clothingItem.tsx';
 
 function App() {
     const [clothings, setClothings] = useState(clothingData);
     const [filteredClothings, setFilteredClothings] = useState(clothings);
+
+    console.log(filteredClothings);
 
     // loc san pham theo category 
     const men = clothings.filter(clothing => clothing.category === `men's clothing`);
@@ -34,8 +37,8 @@ function App() {
     }
 
     return (
-        <div>
-            <div className='flex gap-4'>
+        <div className='p-7 '>
+            <div className='flex gap-8 pb-6'>
                 <Button variant="outlined" onClick={() => buttonOnclick('men')}> men's clothing </Button>
                 <Button variant="outlined" onClick={() => buttonOnclick('jewelery')}> jewelery </Button>
                 <Button variant="outlined" onClick={() => buttonOnclick('electronics')}> electronics </Button>
@@ -45,15 +48,18 @@ function App() {
                 <Button variant="contained" size="small" onClick={() => buttonOnclick('desc')}> Decrease </Button>
             </div>
 
-            <div >
-                {filteredClothings.map(clothing => (
-                    <div key={clothing.id}>
-                        <img src={clothing.image} alt={clothing.title} className='h-[200px] w-[150px]' />
-                        <h2> {clothing.title} </h2>
-                        <p> Price: ${clothing.price} </p>
-                        <p> {clothing.description} </p>
-                        <p> Category: {clothing.category} </p>
-                        <p> Rating: {clothing.rating.rate} ({clothing.rating.count} reviews) </p>
+            <div className='pb-6'>
+                {filteredClothings.map((clothing) => (
+                    <div key={clothing.id} >
+                        <ClothingItem
+                            image={clothing.image}
+                            title={clothing.title}
+                            price={clothing.price}
+                            description={clothing.description}
+                            category={clothing.category}
+                            rate={clothing.rating.rate}
+                            count={clothing.rating.count}
+                        />
                     </div>
                 ))}
             </div>
