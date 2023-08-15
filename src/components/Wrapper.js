@@ -6,11 +6,13 @@ function App() {
     const [clothings, setClothings] = useState(clothingData);
     const [filteredClothings, setFilteredClothings] = useState(clothings);
 
+    // loc san pham theo category 
     const men = clothings.filter(clothing => clothing.category === `men's clothing`);
     const jewelery = clothings.filter(clothing => clothing.category === `jewelery`);
     const electronics = clothings.filter(clothing => clothing.category === `electronics`);
     const women = clothings.filter(clothing => clothing.category === `women's clothing`);
 
+    // sap xep 
     const _ = require('lodash');
     const sortedAsc = _.orderBy(filteredClothings, ['price'], ['asc']);
     const sortedDesc = _.orderBy(filteredClothings, ['price'], ['desc']);
@@ -39,9 +41,8 @@ function App() {
                 <Button variant="outlined" onClick={() => buttonOnclick('electronics')}> electronics </Button>
                 <Button variant="outlined" onClick={() => buttonOnclick('women')}> women's clothing </Button>
 
-                <Button variant="outlined" onClick={() => buttonOnclick('asc')}> Increase </Button>
-                <Button variant="outlined" onClick={() => buttonOnclick('desc')}> Decrease </Button>
-
+                <Button variant="contained" size="small" onClick={() => buttonOnclick('asc')}> Increase </Button>
+                <Button variant="contained" size="small" onClick={() => buttonOnclick('desc')}> Decrease </Button>
             </div>
 
             <div >
